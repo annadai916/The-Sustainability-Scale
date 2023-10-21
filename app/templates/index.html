@@ -19,15 +19,21 @@
 
             container.rotation = net;
 
+            y_diff = 250 * Math.sin(net * Math.PI/180)
+
+            var input_cost = new createjs.Shape();
+            input_cost.graphics.beginFill("darkgreen").drawCircle(250, 400 - y_diff, 50);
+
             var pivot = new createjs.Shape();
             pivot.graphics.beginFill("darkgreen").drawPolyStar(500, 530, 40, 3, 0, -90);
 
             stage.addChild(pivot);
+            stage.addChild(input_cost);
             stage.update();
         }
     </script>
 </head>
-<body onload="init(net=0);">
+<body onload="init(net=-6);">
     <h1>The Sustainability Scale</h1>
     <form id="input" url>
         <label for="input_cost">Cost difference: </label>
@@ -43,7 +49,7 @@
         <button type="submit">Add</button>
     </form>
     <div id="canvas">
-    <canvas id="scale_stage" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+    <canvas id="scale_stage" width="1000" height="600"></canvas>
     </div>
 </body>
 </html>
