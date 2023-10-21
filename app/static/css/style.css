@@ -17,3 +17,6 @@ body {
     margin-right: 50px;
     margin-top: -20px;
 }
+#canvas {
+    text-align: center;
+}

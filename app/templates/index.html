@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flask with Jinja2</title>
+    <title>The Sustainability Scale</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+    <script>
+        function init(net) {
+            var stage = new createjs.Stage("scale_stage");
+            var container = new createjs.Container();
+            stage.addChild(container)
+
+            var bar = new createjs.Shape();
+            bar.graphics.beginFill("darkgreen").drawRoundRect(-400, -10, 800, 40, 20);
+            container.addChild(bar)
+
+            container.x = 500
+            container.y = 460
+
+            container.rotation = net;
+
+            var pivot = new createjs.Shape();
+            pivot.graphics.beginFill("darkgreen").drawPolyStar(500, 530, 40, 3, 0, -90);
+
+            stage.addChild(pivot);
+            stage.update();
+        }
+    </script>
 </head>
-<body>
+<body onload="init(net=0);">
     <h1>The Sustainability Scale</h1>
-    <form id="input">
+    <form id="input" url>
         <label for="input_cost">Cost difference: </label>
         <input type="text" id="input_cost">
         <button type="submit">Add</button>
@@ -19,7 +42,8 @@
         </select>
         <button type="submit">Add</button>
     </form>
-    <!--dropdown on other side of elements to add-->
-    <div><!--interactive scale with easeljs--></div>
+    <div id="canvas">
+    <canvas id="scale_stage" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+    </div>
 </body>
 </html>
