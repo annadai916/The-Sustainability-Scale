@@ -5,7 +5,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome to Flask with Jinja2</h1>
-    <p>{{ message }}</p>
+    <h1>The Sustainability Scale</h1>
+    <form id="input">
+        <label for="input_cost">Cost difference: </label>
+        <input type="text" id="input_cost">
+        <button type="submit">Add</button>
+    </form>
+    <form id="offset">
+        <label for="positive_cost">Savings: </label>
+        <input type="text" id="savings_times">
+        <select id="savings_type">
+            <option value="walk">Walk a mile instead of driving</option>
+        </select>
+        <button type="submit">Add</button>
+    </form>
+    <!--dropdown on other side of elements to add-->
+    <div><!--interactive scale with easeljs--></div>
 </body>
 </html>

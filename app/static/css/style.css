@@ -1,0 +1,19 @@
+h1 {
+    color: darkgreen;
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: rgb(228, 255, 228);
+}
+#input {
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 60px;
+}
+#offset {
+    text-align: right;
+    margin-right: 50px;
+    margin-top: -20px;
+}
