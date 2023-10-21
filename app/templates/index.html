@@ -3,23 +3,32 @@
 <head>
     <title>Flask with Jinja2</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/calculations.js') }}"></script>
+
 </head>
 <body>
     <h1>The Sustainability Scale</h1>
     <form id="input">
         <label for="input_cost">Cost difference: </label>
         <input type="text" id="input_cost">
-        <button type="submit">Add</button>
+        <button type="submit" id="calculate-button">Add</button>
+
     </form>
+    <div id="result-div">
+        <span id="result-label">Result: </span>
+        <span id="result-value"></span>
+    </div>
     <form id="offset">
         <label for="positive_cost">Savings: </label>
         <input type="text" id="savings_times">
         <select id="savings_type">
             <option value="walk">Walk a mile instead of driving</option>
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" id="calculate-offset-button">Add</button>
     </form>
     <!--dropdown on other side of elements to add-->
     <div><!--interactive scale with easeljs--></div>
+
 </body>
 </html>
