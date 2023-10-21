@@ -4,6 +4,8 @@
     <title>The Sustainability Scale</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/calculations.js') }}"></script>
     <script>
         function init(net) {
             var stage = new createjs.Stage("scale_stage");
@@ -33,20 +35,24 @@
         }
     </script>
 </head>
-<body onload="init({{ data }});">
+<body onload="init({{data}});">
     <h1>The Sustainability Scale</h1>
-    <form id="input" url_for="">
+    <form id="input" action="/calculate" method="post" url_for="/input">
         <label for="input_cost">Cost difference: </label>
         <input type="text" id="input_cost">
-        <button type="submit">Add</button>
+        <button type="submit" id="calculate-button">Add</button>
     </form>
+    <div id="result-div">
+        <span id="result-label">Result: </span>
+        <span id="result-value"></span>
+    </div>
     <form id="offset">
         <label for="positive_cost">Savings: </label>
         <input type="text" id="savings_times">
         <select id="savings_type">
             <option value="walk">Walk a mile instead of driving</option>
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" id="calculate-offset-button">Add</button>
     </form>
     <div id="canvas">
     <canvas id="scale_stage" width="1000" height="600"></canvas>

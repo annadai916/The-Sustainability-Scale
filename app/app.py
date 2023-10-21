@@ -17,4 +17,4 @@ def handle_calculation(data):
     socketio.emit('result', {'result': money_spent})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, port=4000)
