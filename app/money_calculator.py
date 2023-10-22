@@ -12,7 +12,7 @@ def get_base_value(base):
     elif base == 'boba':
         return 5.84
     elif base == 'water':
-        0.611
+        return 0.611
     elif base == 'cook':
         return 7
 
