@@ -4,8 +4,6 @@
     <title>The Sustainability Scale</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>-->
-    <!--<script src="{{ url_for('static', filename='js/calculations.js') }}"></script>-->
     <script>
         function init(net) {
             var stage = new createjs.Stage("scale_stage");
@@ -49,6 +47,7 @@
     <p>Instructions:<p>
     <p>In the Cost Difference section: Add any extra money you spent purchasing a sustainable item</p>
     <p>In the Savings section: Choose an activity you completed from the drop down menu and the number of times</p>
+    <p>Click on the title <i>The Sustainability Scale</i> to reset</p>
 
     <div id="forms">
         <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
