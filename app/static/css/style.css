@@ -13,7 +13,7 @@ body {
 }
 #input {
     text-align: left;
-    margin-left: 60px;
+    margin-left: 80px;
     margin-top: 60px;
 }
 #offset {
@@ -24,22 +24,11 @@ body {
 }
 #canvas {
     text-align: center;
-    margin: 100px 0 0 0;
+    margin: 40px 0 0 0;
 }
 
-<<<<<<< HEAD
-
-.container form {
-    margin-right: 20px; /* Adjust this margin as needed to separate the forms */
-    align-self: flex-start;
-}
-
-.dict {
-    margin: 0 100px 0 0;
-=======
 #dict {
-    margin: 0 70px 0 0;
->>>>>>> 3d2b98f9ab46fd734a9d1f21a7f1e928cba20c2c
-    float: right;
-    text-align: right;
+    display: inline-block;
+    margin: 0px 0px 0 32%;
+    text-align: center;
 }

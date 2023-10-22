@@ -17,20 +17,29 @@
             container.addChild(bar)
 
             container.x = 400
-            container.y = 260
+            container.y = 205
 
             container.rotation = net;
 
-            y_diff = 250 * Math.sin(net * Math.PI/180)
+            y_diff = 150 * Math.sin(net * Math.PI/180)
+            y_diff2 = 250 * Math.sin(net * Math.PI/180)
 
             var input_cost = new createjs.Shape();
-            input_cost.graphics.beginFill("darkgreen").drawCircle(150, 160 - y_diff, 50);
+            input_cost.graphics.beginFill("darkgreen").drawRect(150, 85 - y_diff, 100, 30);
+
+            var pos_cost1 = new createjs.Shape();
+            pos_cost1.graphics.beginFill("darkgreen").drawRect(550, 75 + y_diff2, 100, 30);
+
+            var pos_cost2 = new createjs.Shape();
+            pos_cost2.graphics.beginFill("darkgreen").drawRect(585, 40 + y_diff2, 30, 100);
 
             var pivot = new createjs.Shape();
-            pivot.graphics.beginFill("darkgreen").drawPolyStar(400, 290, 40, 3, 0, -90);
+            pivot.graphics.beginFill("darkgreen").drawPolyStar(400, 240, 40, 3, 0, -90);
 
             stage.addChild(pivot);
             stage.addChild(input_cost);
+            stage.addChild(pos_cost1);
+            stage.addChild(pos_cost2);
             stage.update();
         }
     </script>
@@ -68,28 +77,43 @@
             <tr>
                 <td>Miles walked instead of driving</td>
                 <td>{{ right_side_dict['walk']['Num'] }}</td>
-                <td>$ {{ right_side_dict['walk']['Money'] }}</td>
+                <td>${{ right_side_dict['walk']['Money'] }}</td>
             </tr>
             <tr>
                 <td>Number of Bobas/Starbucks saved</td>
                 <td>{{ right_side_dict['boba']['Num'] }}</td>
-                <td>$ {{ right_side_dict['boba']['Money'] }}</td>
+                <td>${{ right_side_dict['boba']['Money'] }}</td>
             </tr>
             <tr>
                 <td>Cups of tap/filtered water instead of bottled water</td>
                 <td>{{ right_side_dict['water']['Num'] }}</td>
-                <td>$ {{ right_side_dict['water']['Money'] }}</td>
+                <td>${{ right_side_dict['water']['Money'] }}</td>
             </tr>
             <tr>
                 <td>Meals cooked instead of eating out</td>
                 <td>{{ right_side_dict['cook']['Num'] }}</td>
-                <td>$ {{ right_side_dict['cook']['Money'] }}</td>
+                <td>${{ right_side_dict['cook']['Money'] }}</td>
+            </tr>
+            <tr>
+                <td>Total money spent:</td>
+                <td></td>
+                <td>${{ total_spent }}</td>
+            </tr>
+            <tr>
+                <td>Total money saved:</td>
+                <td></td>
+                <td>${{ total_saved }}</td>
+            </tr>
+            <tr>
+                <th>Net savings:</th>
+                <td></td>
+                <th>${{ net }}</th>
             </tr>
         </table>
     </div>
     <br>
     <div id="canvas">
-    <canvas id="scale_stage" width="800" height="400" style="border:1px solid #000000;"></canvas>
+    <canvas id="scale_stage" width="800" height="350"></canvas>
     </div>
 </body>
 </html>
