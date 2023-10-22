@@ -9,6 +9,16 @@ net_sum = 0
 left_side = 0
 right_side = 0
 
+right_side_dict = {"walk": 
+                    {"Num": 0, "Money": 0}, 
+                   "boba": 
+                   {"Num": 0, "Money": 0}, 
+                   "water": 
+                   {"Num": 0, "Money": 0},
+                    "cook": 
+                    {"Num": 0, "Money": 0}}
+
+
 def update_net(left, right):
     global net_sum
     global left_side
@@ -25,17 +35,6 @@ def update_net(left, right):
     print("right: " + str(right_side))
     print("scaled: " + str(scaledValue))
     return scaledValue
-left_side = 0
-right_side = 0
-
-right_side_dict = {"walk": 
-                    {"Num": 0, "Money": 0}, 
-                   "boba": 
-                   {"Num": 0, "Money": 0}, 
-                   "water": 
-                   {"Num": 0, "Money": 0},
-                    "cook": 
-                    {"Num": 0, "Money": 0}}
 
 @app.route('/')
 def index():
@@ -45,7 +44,7 @@ def index():
     net_sum = 0
     left_side = 0
     right_side = 0
-    return render_template('index.html', data=net_sum)
+    return render_template('index.html', data=net_sum, right_side_dict=right_side_dict)
 
 @app.route('/index.html')
 def goback():
@@ -55,28 +54,27 @@ def goback():
 def handle_neg_input():
     cost = request.form['input_cost']
     new_net = update_net(cost, 0)
-    return render_template('index.html', data=new_net)
+    return render_template('index.html', data=new_net, right_side_dict=right_side_dict)
 
 @app.route('/handle_pos_input', methods=['POST'])
 def handle_pos_input():
-    global net_sum, right_side, right_side_dict
     # Get values from form
     multiplier = request.form['savings_times']
     base = request.form['savings_type']
-    new_net = update_net(0, multiplier)
     base_type = request.form['savings_type']
     # Get money saved for event
     base = get_base_value(base_type)
     total_saved = float(multiplier) * base
+    new_net = update_net(0, total_saved)
     # Update dictionary
-    right_side_dict[base_type]["Num"] += base
-    right_side_dict[base_type]["Money"] += total_saved
+    right_side_dict[base_type]["Num"] += int(multiplier)
+    right_side_dict[base_type]["Money"] += float(total_saved)
     # Update right_side value
-    right_side += total_saved
     # Update net_sum value
-    net_sum += right_side
 
-    return render_template('index.html', data=new_net)
+    print(right_side_dict)
+
+    return render_template('index.html', data=new_net, right_side_dict=right_side_dict)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4001)
