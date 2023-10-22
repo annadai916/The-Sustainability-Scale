@@ -13,30 +13,22 @@ body {
 }
 #input {
     text-align: left;
-    margin-left: 50px;
+    margin-left: 60px;
     margin-top: 60px;
 }
 #offset {
-    text-align: right;
+    text-align: left;
+    float: right;
     margin-right: 50px;
-    margin-top: -20px;
+    margin-top: -50px;
 }
 #canvas {
     text-align: center;
+    margin: 100px 0 0 0;
 }
 
-
-.container form {
-    margin-right: 20px; /* Adjust this margin as needed to separate the forms */
-    align-self: flex-start;
-}
-
-.dict {
-    display: inline-block;
-    margin: 0 auto;
-}
-
-.dict {
+#dict {
+    margin: 0 70px 0 0;
     float: right;
     text-align: right;
 }

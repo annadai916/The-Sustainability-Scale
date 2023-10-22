@@ -44,6 +44,14 @@ def index():
     net_sum = 0
     left_side = 0
     right_side = 0
+    right_side_dict = {"walk": 
+                    {"Num": 0, "Money": 0}, 
+                   "boba": 
+                   {"Num": 0, "Money": 0}, 
+                   "water": 
+                   {"Num": 0, "Money": 0},
+                    "cook": 
+                    {"Num": 0, "Money": 0}}
     return render_template('index.html', data=net_sum, right_side_dict=right_side_dict)
 
 @app.route('/index.html')
@@ -52,27 +60,31 @@ def goback():
 
 @app.route('/handle_neg_input', methods=['POST'])
 def handle_neg_input():
+    global net_sum
     cost = request.form['input_cost']
-    new_net = update_net(cost, 0)
+    new_net = net_sum
+    if cost != "":
+        new_net = update_net(cost, 0)
     return render_template('index.html', data=new_net, right_side_dict=right_side_dict)
 
 @app.route('/handle_pos_input', methods=['POST'])
 def handle_pos_input():
+    global net_sum
     # Get values from form
+    new_net = net_sum
     multiplier = request.form['savings_times']
-    base = request.form['savings_type']
-    base_type = request.form['savings_type']
-    # Get money saved for event
-    base = get_base_value(base_type)
-    total_saved = float(multiplier) * base
-    new_net = update_net(0, total_saved)
-    # Update dictionary
-    right_side_dict[base_type]["Num"] += int(multiplier)
-    right_side_dict[base_type]["Money"] += float(total_saved)
-    # Update right_side value
-    # Update net_sum value
-
-    print(right_side_dict)
+    if multiplier != "":
+        base = request.form['savings_type']
+        base_type = request.form['savings_type']
+        # Get money saved for event
+        base = get_base_value(base_type)
+        total_saved = float(multiplier) * base
+        new_net = update_net(0, total_saved)
+        # Update dictionary
+        right_side_dict[base_type]["Num"] += int(multiplier)
+        right_side_dict[base_type]["Money"] += float(total_saved)
+        # Update right_side value
+        # Update net_sum value
 
     return render_template('index.html', data=new_net, right_side_dict=right_side_dict)
 

@@ -16,18 +16,18 @@
             bar.graphics.beginFill("darkgreen").drawRoundRect(-400, -50, 800, 40, 20);
             container.addChild(bar)
 
-            container.x = 500
-            container.y = 460
+            container.x = 400
+            container.y = 260
 
             container.rotation = net;
 
             y_diff = 250 * Math.sin(net * Math.PI/180)
 
             var input_cost = new createjs.Shape();
-            input_cost.graphics.beginFill("darkgreen").drawCircle(250, 360 - y_diff, 50);
+            input_cost.graphics.beginFill("darkgreen").drawCircle(150, 160 - y_diff, 50);
 
             var pivot = new createjs.Shape();
-            pivot.graphics.beginFill("darkgreen").drawPolyStar(500, 490, 40, 3, 0, -90);
+            pivot.graphics.beginFill("darkgreen").drawPolyStar(400, 290, 40, 3, 0, -90);
 
             stage.addChild(pivot);
             stage.addChild(input_cost);
@@ -37,28 +37,28 @@
 </head>
 <body onload="init({{data}});">
     <h1><a href="index.html">The Sustainability Scale</a></h1>
-            <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
-                <label for="input_cost">Cost difference: </label>
-                <input type="text" id="input_cost" name="input_cost">
-                <button type="submit" id="calculate-button">Add</button>
-            </form>
-
-
-            <form id="offset" method="post" action="{{ url_for('handle_pos_input') }}">
-                <label for="positive_cost">Savings: </label>
-                <input type="text" id="savings_times" name="savings_times">
-                <select id="savings_type" name="savings_type">
-                    <option value="walk">Walk a mile instead of driving</option>
-                    <option value="boba">Skip a Boba/Starbucks</option>
-                    <option value="water">Hydrate with a cup of tap water instead of bottled water</option>
-                    <option value="cook">Cook a meal at home instead of eating out</option>
-                </select>
-                <button type="submit" id="calculate-offset-button">Add</button>
-            </form>
-
-
-    <div class="dict">
-        <h2>Right Side Dictionary</h2>
+    <div id="forms">
+        <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
+            <label for="input_cost">Cost difference: </label><br>
+            <input type="text" id="input_cost" name="input_cost">
+            <button type="submit" id="calculate-button">Add</button>
+        </form>
+        <form id="offset" method="post" action="{{ url_for('handle_pos_input') }}">
+            <label for="positive_cost">Savings: </label><br>
+            <label for="savings_times">Amount: </label>
+            <input type="text" id="savings_times" name="savings_times"><br>
+            <select id="savings_type" name="savings_type">
+                <option value="walk">Walk a mile instead of driving</option>
+                <option value="boba">Skip a Boba/Starbucks</option>
+                <option value="water">Hydrate with a cup of tap water instead of bottled water</option>
+                <option value="cook">Cook a meal at home instead of eating out</option>
+            </select>
+            <button type="submit" id="calculate-offset-button">Add</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div id="dict">
         <table>
             <tr>
                 <th>Item</th>
@@ -74,9 +74,9 @@
             {% endfor %}
         </table>
     </div>
-
+    <br>
     <div id="canvas">
-    <canvas id="scale_stage" width="1000" height="600"></canvas>
+    <canvas id="scale_stage" width="800" height="400" style="border:1px solid #000000;"></canvas>
     </div>
 </body>
 </html>
