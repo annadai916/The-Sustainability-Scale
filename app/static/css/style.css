@@ -24,12 +24,19 @@ body {
 #canvas {
     text-align: center;
 }
-.container {
-    text-align: center; /* Center-align the content horizontally */
+
+
+.container form {
+    margin-right: 20px; /* Adjust this margin as needed to separate the forms */
+    align-self: flex-start;
 }
 
-.box {
-    display: inline-block; /* Display the box as inline-block to center it */
-    text-align: left; /* Reset the text alignment inside the box */
-    margin: 0 auto; /* Center the box horizontally using auto margins */
+.dict {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.dict {
+    float: right;
+    text-align: right;
 }

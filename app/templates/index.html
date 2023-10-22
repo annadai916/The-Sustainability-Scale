@@ -37,41 +37,44 @@
 </head>
 <body onload="init({{data}});">
     <h1><a href="index.html">The Sustainability Scale</a></h1>
-    <div class="container">
-        <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
-            <label for="input_cost">Cost difference: </label>
-            <input type="text" id="input_cost" name="input_cost">
-            <button type="submit" id="calculate-button">Add</button>
-        </form>
-        <div class="box">
-            <h2>Right Side Dictionary</h2>
-            <table>
-                <tr>
-                    <th>Item</th>
-                    <th>Number</th>
-                    <th>Money</th>
-                </tr>
-                {% for key, value in right_side_dict.items() %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ value['Num'] }}</td>
-                    <td>{{ value['Money'] }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <form id="offset" method="post" action="{{ url_for('handle_pos_input') }}">
-            <label for="positive_cost">Savings: </label>
-            <input type="text" id="savings_times" name="savings_times">
-            <select id="savings_type" name="savings_type">
-                <option value="walk">Walk a mile instead of driving</option>
-                <option value="boba">Skip a Boba/Starbucks</option>
-                <option value="water">Hydrate with a cup of tap water instead of bottled water</option>
-                <option value="cook">Cook a meal at home instead of eating out</option>
-            </select>
-            <button type="submit" id="calculate-offset-button">Add</button>
-        </form>
+            <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
+                <label for="input_cost">Cost difference: </label>
+                <input type="text" id="input_cost" name="input_cost">
+                <button type="submit" id="calculate-button">Add</button>
+            </form>
+
+
+            <form id="offset" method="post" action="{{ url_for('handle_pos_input') }}">
+                <label for="positive_cost">Savings: </label>
+                <input type="text" id="savings_times" name="savings_times">
+                <select id="savings_type" name="savings_type">
+                    <option value="walk">Walk a mile instead of driving</option>
+                    <option value="boba">Skip a Boba/Starbucks</option>
+                    <option value="water">Hydrate with a cup of tap water instead of bottled water</option>
+                    <option value="cook">Cook a meal at home instead of eating out</option>
+                </select>
+                <button type="submit" id="calculate-offset-button">Add</button>
+            </form>
+
+
+    <div class="dict">
+        <h2>Right Side Dictionary</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Number</th>
+                <th>Money</th>
+            </tr>
+            {% for key, value in right_side_dict.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value['Num'] }}</td>
+                <td>{{ value['Money'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
+
     <div id="canvas">
     <canvas id="scale_stage" width="1000" height="600"></canvas>
     </div>
