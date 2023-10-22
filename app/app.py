@@ -10,13 +10,14 @@ left_side = 0
 right_side = 0
 
 right_side_dict = {"walk": 
-                    {"Num": 0, "Money": 0}, 
+                    {"Num": 0, "Money": round(0, 2)}, 
                    "boba": 
-                   {"Num": 0, "Money": 0}, 
+                   {"Num": 0, "Money": round(0, 2)}, 
                    "water": 
-                   {"Num": 0, "Money": 0},
+                   {"Num": 0, "Money": round(0, 2)},
                     "cook": 
-                    {"Num": 0, "Money": 0}}
+                    {"Num": 0, "Money": round(0, 2)}
+                }
 
 
 def update_net(left, right):
@@ -24,11 +25,11 @@ def update_net(left, right):
     global left_side
     global right_side
     if (left != 0):
-        left_side -= int(left)
+        left_side -= float(left)
     if (right != 0):
-        right_side += int(right)
-    net_sum -= int(left)
-    net_sum += int(right)
+        right_side += float(right)
+    net_sum -= float(left)
+    net_sum += float(right)
     scaledValue = ((net_sum / abs(left_side)) * 10)
     print("net: " + str(net_sum))
     print("left: " + str(left_side))
@@ -67,8 +68,8 @@ def handle_pos_input():
     total_saved = float(multiplier) * base
     new_net = update_net(0, total_saved)
     # Update dictionary
-    right_side_dict[base_type]["Num"] += int(multiplier)
-    right_side_dict[base_type]["Money"] += float(total_saved)
+    right_side_dict[base_type]["Num"] += float(multiplier)
+    right_side_dict[base_type]["Money"] += round(float(total_saved), 2)
     # Update right_side value
     # Update net_sum value
 

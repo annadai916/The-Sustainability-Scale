@@ -32,11 +32,7 @@ body {
 }
 
 .dict {
-    display: inline-block;
-    margin: 0 auto;
-}
-
-.dict {
+    margin: 0 100px 0 0;
     float: right;
     text-align: right;
 }

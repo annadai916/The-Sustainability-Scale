@@ -58,20 +58,33 @@
 
 
     <div class="dict">
-        <h2>Right Side Dictionary</h2>
+        <h2>Tasks Accomplished</h2>
         <table>
             <tr>
-                <th>Item</th>
-                <th>Number</th>
-                <th>Money</th>
+                <th>Activity</th>
+                <th>Count</th>
+                <th>Money Saved</th>
             </tr>
-            {% for key, value in right_side_dict.items() %}
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ value['Num'] }}</td>
-                <td>{{ value['Money'] }}</td>
+                <td>Miles walked instead of driving</td>
+                <td>{{ right_side_dict['walk']['Num'] }}</td>
+                <td>$ {{ right_side_dict['walk']['Money'] }}</td>
             </tr>
-            {% endfor %}
+            <tr>
+                <td>Number of Bobas/Starbucks saved</td>
+                <td>{{ right_side_dict['boba']['Num'] }}</td>
+                <td>$ {{ right_side_dict['boba']['Money'] }}</td>
+            </tr>
+            <tr>
+                <td>Cups of tap/filtered water instead of bottled water</td>
+                <td>{{ right_side_dict['water']['Num'] }}</td>
+                <td>$ {{ right_side_dict['water']['Money'] }}</td>
+            </tr>
+            <tr>
+                <td>Meals cooked instead of eating out</td>
+                <td>{{ right_side_dict['cook']['Num'] }}</td>
+                <td>$ {{ right_side_dict['cook']['Money'] }}</td>
+            </tr>
         </table>
     </div>
 
