@@ -1,5 +1,5 @@
 h1 {
-    color: darkgreen;
+    color: rgb(10, 136, 10)en;
     text-align: center;
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -8,8 +8,15 @@ a {
     text-decoration: none;
     color: darkgreen;
 }
+p {
+    color: darkgreen;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
 body {
     background-color: rgb(228, 255, 228);
+    border-bottom: 20px solid rgb(10, 136, 10);
 }
 #input {
     text-align: left;
@@ -36,7 +43,7 @@ body {
     font-size: 15px;
 }
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: rgb(10, 136, 10); /* Green */
     border: none;
     color: white;
     padding: 5px 10px;
@@ -57,6 +64,6 @@ select {
     font-size: 15px;
 }
 th, td {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgb(10, 136, 10);
     padding: 5px;
 }
