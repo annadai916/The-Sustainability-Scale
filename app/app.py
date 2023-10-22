@@ -6,10 +6,35 @@ app = Flask(__name__)
 # socketio = SocketIO(app)
 
 net_sum = 0
+left_side = 0
+right_side = 0
+
+def update_net(left, right):
+    global net_sum
+    global left_side
+    global right_side
+    if (left != 0):
+        left_side -= int(left)
+    if (right != 0):
+        right_side += int(right)
+    net_sum -= int(left)
+    net_sum += int(right)
+    scaledValue = ((net_sum / abs(left_side)) * 10)
+    print("net: " + str(net_sum))
+    print("left: " + str(left_side))
+    print("right: " + str(right_side))
+    print("scaled: " + str(scaledValue))
+    return scaledValue
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=0)
+    global net_sum
+    global left_side
+    global right_side
+    net_sum = 0
+    left_side = 0
+    right_side = 0
+    return render_template('index.html', data=net_sum)
 
 @app.route('/index.html')
 def goback():
@@ -17,20 +42,16 @@ def goback():
 
 @app.route('/handle_neg_input', methods=['POST'])
 def handle_neg_input():
-    global net_sum
     cost = request.form['input_cost']
-    net_sum -= int(cost)
-    print(net_sum)
-    return render_template('index.html', data=net_sum)
+    new_net = update_net(cost, 0)
+    return render_template('index.html', data=new_net)
 
 @app.route('/handle_pos_input', methods=['POST'])
 def handle_pos_input():
-    global net_sum
     multiplier = request.form['savings_times']
     base = request.form['savings_type']
-    net_sum += int(multiplier)
-    print(net_sum)
-    return render_template('index.html', data=net_sum)
+    new_net = update_net(0, multiplier)
+    return render_template('index.html', data=new_net)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4001)
