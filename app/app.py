@@ -30,6 +30,7 @@ def handle_pos_input():
     base = request.form['savings_type']
     net_sum += int(multiplier)
     print(net_sum)
+    base = get_base_value(base)
     return render_template('index.html', data=net_sum)
 
 if __name__ == '__main__':

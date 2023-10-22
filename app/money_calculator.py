@@ -6,6 +6,16 @@ Cooking at home - $7.00
 '''
 money_spent = 0
 
+def get_base_value(base):
+    if base == 'walk':
+        return 0.655
+    elif base == 'boba':
+        return 5.84
+    elif base == 'water':
+        0.611
+    elif base == 'cook':
+        return 7
+
 def add_money_spent(cost):
     global money_spent
     money_spent -= cost
