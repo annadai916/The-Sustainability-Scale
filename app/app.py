@@ -51,7 +51,7 @@ def handle_pos_input():
     # Update net_sum value
     net_sum += right_side
     print(net_sum)
-    return render_template('index.html', data=net_sum)
+    return render_template('index.html', data=net_sum, right_side_dict=right_side_dict)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4001)
