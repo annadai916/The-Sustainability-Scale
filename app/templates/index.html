@@ -4,8 +4,8 @@
     <title>The Sustainability Scale</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
-    <script src="{{ url_for('static', filename='js/calculations.js') }}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>-->
+    <!--<script src="{{ url_for('static', filename='js/calculations.js') }}"></script>-->
     <script>
         function init(net) {
             var stage = new createjs.Stage("scale_stage");
@@ -13,7 +13,7 @@
             stage.addChild(container)
 
             var bar = new createjs.Shape();
-            bar.graphics.beginFill("darkgreen").drawRoundRect(-400, -10, 800, 40, 20);
+            bar.graphics.beginFill("darkgreen").drawRoundRect(-400, -50, 800, 40, 20);
             container.addChild(bar)
 
             container.x = 500
@@ -24,10 +24,10 @@
             y_diff = 250 * Math.sin(net * Math.PI/180)
 
             var input_cost = new createjs.Shape();
-            input_cost.graphics.beginFill("darkgreen").drawCircle(250, 400 - y_diff, 50);
+            input_cost.graphics.beginFill("darkgreen").drawCircle(250, 360 - y_diff, 50);
 
             var pivot = new createjs.Shape();
-            pivot.graphics.beginFill("darkgreen").drawPolyStar(500, 530, 40, 3, 0, -90);
+            pivot.graphics.beginFill("darkgreen").drawPolyStar(500, 490, 40, 3, 0, -90);
 
             stage.addChild(pivot);
             stage.addChild(input_cost);
@@ -36,16 +36,12 @@
     </script>
 </head>
 <body onload="init({{data}});">
-    <h1>The Sustainability Scale</h1>
-    <form id="input" action="/calculate" method="post" url_for="/input">
+    <h1><a href="index.html">The Sustainability Scale</a></h1>
+    <form id="input" method="post" action="{{ url_for('handle_input') }}">
         <label for="input_cost">Cost difference: </label>
-        <input type="text" id="input_cost">
+        <input type="text" id="input_cost" name="input_cost">
         <button type="submit" id="calculate-button">Add</button>
     </form>
-    <div id="result-div">
-        <span id="result-label">Result: </span>
-        <span id="result-value"></span>
-    </div>
     <form id="offset">
         <label for="positive_cost">Savings: </label>
         <input type="text" id="savings_times">

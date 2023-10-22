@@ -1,20 +1,33 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask import *
+# from flask_socketio import SocketIO
 from money_calculator import *
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+# socketio = SocketIO(app)
+
+net_sum = 0
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=-5)
+    return render_template('index.html', data=0)
 
-@socketio.on('calculate')
+@app.route('/index.html')
+def goback():
+    return redirect('/')
+
+""" @socketio.on('calculate')
 def handle_calculation(data):
     global money_spent
     cost_difference = data['costDifference']
     money_spent -= cost_difference
-    socketio.emit('result', {'result': money_spent})
+    socketio.emit('result', {'result': money_spent}) """
+
+@app.route('/handle_input', methods=['POST'])
+def handle_input():
+    print("in handle_input")
+    cost = request.form['input_cost']
+    print(cost)
+    return render_template('index.html', data=cost)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=4000)
+    app.run(debug=True, port=4001)
