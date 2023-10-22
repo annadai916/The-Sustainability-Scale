@@ -37,15 +37,15 @@
 </head>
 <body onload="init({{data}});">
     <h1><a href="index.html">The Sustainability Scale</a></h1>
-    <form id="input" method="post" action="{{ url_for('handle_input') }}">
+    <form id="input" method="post" action="{{ url_for('handle_neg_input') }}">
         <label for="input_cost">Cost difference: </label>
         <input type="text" id="input_cost" name="input_cost">
         <button type="submit" id="calculate-button">Add</button>
     </form>
-    <form id="offset">
+    <form id="offset" method="post" action="{{ url_for('handle_pos_input') }}">
         <label for="positive_cost">Savings: </label>
-        <input type="text" id="savings_times">
-        <select id="savings_type">
+        <input type="text" id="savings_times" name="savings_times">
+        <select id="savings_type" name="savings_type">
             <option value="walk">Walk a mile instead of driving</option>
         </select>
         <button type="submit" id="calculate-offset-button">Add</button>

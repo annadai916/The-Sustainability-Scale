@@ -15,19 +15,22 @@ def index():
 def goback():
     return redirect('/')
 
-""" @socketio.on('calculate')
-def handle_calculation(data):
-    global money_spent
-    cost_difference = data['costDifference']
-    money_spent -= cost_difference
-    socketio.emit('result', {'result': money_spent}) """
-
-@app.route('/handle_input', methods=['POST'])
-def handle_input():
-    print("in handle_input")
+@app.route('/handle_neg_input', methods=['POST'])
+def handle_neg_input():
+    global net_sum
     cost = request.form['input_cost']
-    print(cost)
-    return render_template('index.html', data=cost)
+    net_sum -= int(cost)
+    print(net_sum)
+    return render_template('index.html', data=net_sum)
+
+@app.route('/handle_pos_input', methods=['POST'])
+def handle_pos_input():
+    global net_sum
+    multiplier = request.form['savings_times']
+    base = request.form['savings_type']
+    net_sum += int(multiplier)
+    print(net_sum)
+    return render_template('index.html', data=net_sum)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4001)
